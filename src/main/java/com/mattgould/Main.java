@@ -15,6 +15,7 @@ import com.mattgould.day10.Day10;
 import com.mattgould.day11.Day11;
 import com.mattgould.day12.Day12;
 import com.mattgould.day13.Day13;
+import com.mattgould.day14.Day14;
 
 import java.util.Arrays;
 
@@ -114,6 +115,14 @@ public class Main {
 		timer.start();
 		Day13.go("/home/mgould/code/advent-2021/input.13", 0);
 		System.out.println("Day13a took: " + timer.stop());
+		timer.reset();
+		timer.start();
+		Day14.go("/home/mgould/code/advent-2021/input.14", 10);
+		System.out.println("Day14a took: " + timer.stop());
+		timer.reset();
+		timer.start();
+		Day14.go2("/home/mgould/code/advent-2021/input.14", 40);
+		System.out.println("Day14b took: " + timer.stop());
 	}
 
 }
