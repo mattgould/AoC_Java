@@ -3,6 +3,8 @@ package com.mattgould.day16;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class Packet {
 	int version;
@@ -156,6 +158,52 @@ public class Packet {
 		} else {
 			return 0L;
 		}
+	}
+
+	@Override public String toString() {
+		StringBuilder representation = new StringBuilder();
+		if (type != 4) {
+			ArrayList<String> subPacketStrings = new ArrayList<>();
+			for (Packet p : subPackets) {
+				subPacketStrings.add(p.toString());
+			}
+			switch (type) {
+				case 0: // sum
+					representation.append("(");
+					representation.append(String.join(" + ", subPacketStrings));
+					break;
+				case 1: // product
+					representation.append("(");
+					representation.append(String.join(" * ", subPacketStrings));
+					break;
+				case 2: // min
+					representation.append("min(");
+					representation.append(String.join(", ", subPacketStrings));
+					break;
+				case 3: //max
+					representation.append("max(");
+					representation.append(String.join(", ", subPacketStrings));
+					break;
+				case 5: // >
+					representation.append("(");
+					representation.append(String.join(" > ", subPacketStrings));
+					break;
+				case 6: // <
+					representation.append("(");
+					representation.append(String.join(" < ", subPacketStrings));
+					break;
+				case 7: // ==
+					representation.append("(");
+					representation.append(String.join(" == ", subPacketStrings));
+					break;
+			}
+			representation.append(")");
+		} else {
+			representation.append(value);
+		}
+
+
+		return representation.toString();
 	}
 }
 
