@@ -21,7 +21,7 @@ public class Day16 {
 		Packet p = new Packet(hexToBits(packetHex));
 		value = p.value;
 
-		System.out.printf("Packet: %s%nResult: %d%n%n", p, p.value);
+		System.out.printf("Packet: %s ==> %d%n", p, p.value);
 
 		return value;
 

@@ -1,5 +1,7 @@
 package com.mattgould.day16;
 
+import com.mattgould.ANSI;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -167,39 +169,50 @@ public class Packet {
 			for (Packet p : subPackets) {
 				subPacketStrings.add(p.toString());
 			}
+			String start = "";
+			String delimiter = "";
 			switch (type) {
 				case 0: // sum
-					representation.append("(");
-					representation.append(String.join(" + ", subPacketStrings));
+					start = "(";
+					delimiter = " + ";
 					break;
 				case 1: // product
-					representation.append("(");
-					representation.append(String.join(" * ", subPacketStrings));
+					start = "(";
+					delimiter = " * ";
 					break;
 				case 2: // min
-					representation.append("min(");
-					representation.append(String.join(", ", subPacketStrings));
+					start = "min(";
+					delimiter = ", ";
 					break;
 				case 3: //max
-					representation.append("max(");
-					representation.append(String.join(", ", subPacketStrings));
+					start = "max(";
+					delimiter = ", ";
 					break;
 				case 5: // >
-					representation.append("(");
-					representation.append(String.join(" > ", subPacketStrings));
+					start = "(";
+					delimiter = " > ";
 					break;
 				case 6: // <
-					representation.append("(");
-					representation.append(String.join(" < ", subPacketStrings));
+					start = "(";
+					delimiter = " < ";
 					break;
 				case 7: // ==
-					representation.append("(");
-					representation.append(String.join(" == ", subPacketStrings));
+					start = "(";
+					delimiter = " == ";
 					break;
 			}
+			representation.append(start);
+			representation.append(String.join(delimiter, subPacketStrings));
 			representation.append(")");
-		} else {
+			representation.append(ANSI.BRIGHT_WHITE);
+			representation.append("[");
 			representation.append(value);
+			representation.append("]");
+			representation.append(ANSI.RESET);
+		} else {
+			representation.append(ANSI.YELLOW);
+			representation.append(value);
+			representation.append(ANSI.RESET);
 		}
 
 
