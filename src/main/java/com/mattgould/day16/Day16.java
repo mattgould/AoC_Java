@@ -1,6 +1,5 @@
 package com.mattgould.day16;
 
-import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.util.logging.Logger;
 
